@@ -4,24 +4,21 @@ public class GameEntry : MonoBehaviour
 {
     [SerializeField] private Player _player;
 
-    private InputManager _inputManager;
     public static GameEntry Instance;
+    private InputManager _inputManager;
+
     void Awake()
     {
         if (Instance == null)
             Instance = this;
         else
-            Destroy(this);
+            Debug.LogWarning("GameEntry is already initialized");
 
         _inputManager = new InputManager();
-        
 
-        _inputManager.Initialize();
+        _inputManager.Initialization();
+
         _player.Initialize();
 
     }
-
-    void OnEnable() => _inputManager.Enable();
-    void OnDisable() => _inputManager.Disable();
-
 }

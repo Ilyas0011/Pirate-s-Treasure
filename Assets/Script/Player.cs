@@ -9,9 +9,9 @@ public class Player : MonoBehaviour
     {
         _movementController = GetComponent<MovementController>();
 
-        InputManager.Instance.Look += _movementController.OnMove;
+      //  InputManager.Instance.Look += _movementController.OnMove;
         InputManager.Instance.Move += _movementController.OnMove;
-        InputManager.Instance.JumpAction += _movementController.Jump;
+        InputManager.Instance.Jump += _movementController.Jump;
     }
 }
 

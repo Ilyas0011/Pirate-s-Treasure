@@ -19,7 +19,7 @@ public class MovementController : MonoBehaviour
     void Awake() => _characterController = GetComponent<CharacterController>();
     public void OnMove(Vector3 movement) => _movement = movement;
 
-    private void FixedUpdate()
+    private void Update()
     {
         _moveDirection = _playerCamera.transform.TransformDirection(_movement);
         _moveDirection.y = 0f;

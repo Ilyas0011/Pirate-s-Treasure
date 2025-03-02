@@ -13642,7 +13642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 13
   _gravity: 30
-  _jumpHeight: 2
+  _jumpHeight: 20
   _playerCamera: {fileID: 154047170}
 --- !u!1 &1477307182
 GameObject:
