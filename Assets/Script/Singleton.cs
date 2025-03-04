@@ -12,7 +12,7 @@ public abstract class Singleton<T>
         }
         else
         {
-            throw new Exception($"{instance} singleton already initialized");
+           throw new Exception($"{instance} singleton already initialized");
         }
     }
 }

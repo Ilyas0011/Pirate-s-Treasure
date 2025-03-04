@@ -5,6 +5,7 @@ public class GameEntry : MonoBehaviour
     [SerializeField] private Player _player;
 
     public static GameEntry Instance;
+
     private InputManager _inputManager;
 
     void Awake()
@@ -20,5 +21,10 @@ public class GameEntry : MonoBehaviour
 
         _player.Initialize();
 
+    }
+
+    private void Update()
+    {
+        _inputManager.InputUpdate();
     }
 }

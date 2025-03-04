@@ -1,24 +1,31 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class InputManager: Singleton<InputManager>
 {
-    private InputConfiguration _inputConfiguration;
-    public Action<Vector3> Move;
+    private bool _isMovement;
+
+    public Action<float, float> Move;
+    public Action<float, float> Look;
     public Action Jump;
 
     public void Initialization()
     {
         InitializeSingleton(this);
+        SetMovementEnabled(true);
+    }
 
-        _inputConfiguration = new InputConfiguration();
-        _inputConfiguration.Enable();
+    public void SetMovementEnabled(bool isEnabled) => _isMovement = isEnabled;
 
-        _inputConfiguration.Gameplay.Jump.performed += _ => Jump?.Invoke();
+    public void InputUpdate()
+    {
+        if (_isMovement)
+        {
+            Move?.Invoke(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Look?.Invoke(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        _inputConfiguration.Gameplay.Move.performed += _ => Move?.Invoke(_inputConfiguration.Gameplay.Move.ReadValue<Vector3>());
-        _inputConfiguration.Gameplay.Move.canceled += _ => Move?.Invoke(_inputConfiguration.Gameplay.Move.ReadValue<Vector3>());
+            if (Input.GetKeyDown(KeyCode.Space))
+                Jump?.Invoke();
+        }
     }
 }

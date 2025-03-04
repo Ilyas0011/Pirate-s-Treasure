@@ -46,10 +46,10 @@ public partial class @InputConfiguration: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Mouse"",
+                    ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""b81b11e7-8e95-4e42-988a-464a4b6692a1"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -138,7 +138,7 @@ public partial class @InputConfiguration: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": ""NormalizeVector2"",
                     ""groups"": """",
-                    ""action"": ""Mouse"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -179,7 +179,7 @@ public partial class @InputConfiguration: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
-        m_Gameplay_Mouse = m_Gameplay.FindAction("Mouse", throwIfNotFound: true);
+        m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
         m_Gameplay_Hit = m_Gameplay.FindAction("Hit", throwIfNotFound: true);
     }
 
@@ -249,7 +249,7 @@ public partial class @InputConfiguration: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Move;
-    private readonly InputAction m_Gameplay_Mouse;
+    private readonly InputAction m_Gameplay_Look;
     private readonly InputAction m_Gameplay_Hit;
     public struct GameplayActions
     {
@@ -257,7 +257,7 @@ public partial class @InputConfiguration: IInputActionCollection2, IDisposable
         public GameplayActions(@InputConfiguration wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
-        public InputAction @Mouse => m_Wrapper.m_Gameplay_Mouse;
+        public InputAction @Look => m_Wrapper.m_Gameplay_Look;
         public InputAction @Hit => m_Wrapper.m_Gameplay_Hit;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
@@ -274,9 +274,9 @@ public partial class @InputConfiguration: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Mouse.started += instance.OnMouse;
-            @Mouse.performed += instance.OnMouse;
-            @Mouse.canceled += instance.OnMouse;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
             @Hit.started += instance.OnHit;
             @Hit.performed += instance.OnHit;
             @Hit.canceled += instance.OnHit;
@@ -290,9 +290,9 @@ public partial class @InputConfiguration: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Mouse.started -= instance.OnMouse;
-            @Mouse.performed -= instance.OnMouse;
-            @Mouse.canceled -= instance.OnMouse;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
             @Hit.started -= instance.OnHit;
             @Hit.performed -= instance.OnHit;
             @Hit.canceled -= instance.OnHit;
@@ -326,7 +326,7 @@ public partial class @InputConfiguration: IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
-        void OnMouse(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
         void OnHit(InputAction.CallbackContext context);
     }
 }
