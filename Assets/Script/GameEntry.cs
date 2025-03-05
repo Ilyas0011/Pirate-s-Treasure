@@ -3,10 +3,9 @@ using UnityEngine;
 public class GameEntry : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private UnityCallbackService _unityCallbackService;
 
     public static GameEntry Instance;
-
-    private InputManager _inputManager;
 
     void Awake()
     {
@@ -15,16 +14,8 @@ public class GameEntry : MonoBehaviour
         else
             Debug.LogWarning("GameEntry is already initialized");
 
-        _inputManager = new InputManager();
-
-        _inputManager.Initialization();
-
+        _unityCallbackService.Initialize();
+        new InputManager();
         _player.Initialize();
-
-    }
-
-    private void Update()
-    {
-        _inputManager.InputUpdate();
     }
 }

@@ -9,8 +9,10 @@ public class InputManager: Singleton<InputManager>
     public Action<float, float> Look;
     public Action Jump;
 
-    public void Initialization()
+    public InputManager()
     {
+        UnityCallbackService.Instance.FrameUpdated += InputUpdate;
+
         InitializeSingleton(this);
         SetMovementEnabled(true);
     }
