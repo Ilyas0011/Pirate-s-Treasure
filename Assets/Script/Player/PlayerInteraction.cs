@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private float interactionDistance = 2f; // Дистанция для взаимодействия
-    [SerializeField] private LayerMask interactableLayer; // Слой интерактивных объектов
-    [SerializeField] private Image crosshair; // UI-элемент (точка или кружок в центре экрана)
+    [SerializeField] private float interactionDistance = 2f; 
+    [SerializeField] private LayerMask interactableLayer; 
+    [SerializeField] private Image crosshair; 
 
     private Camera playerCamera;
 
@@ -32,9 +32,9 @@ public class PlayerInteraction : MonoBehaviour
 
             if (interactable != null)
             {
-                crosshair.color = Color.green; // Меняем цвет точки (можно сделать эффект)
+                crosshair.color = Color.green; 
 
-                if (Input.GetKeyDown(KeyCode.E)) // Подбираем предмет по нажатию "E"
+                if (Input.GetKeyDown(KeyCode.E)) 
                 {
                     interactable.Interact();
                 }
@@ -42,6 +42,6 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        crosshair.color = Color.white; // Если предметов нет – точка обычного цвета
+        crosshair.color = Color.white;
     }
 }
