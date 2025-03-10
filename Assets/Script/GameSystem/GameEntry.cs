@@ -1,21 +1,21 @@
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class GameEntry : MonoBehaviour
+public class GameEntry : MonoSingleton<GameEntry>
 {
-    [SerializeField] private Player _player;
     [SerializeField] private UnityCallbackService _unityCallbackService;
+    [SerializeField] private Config _config;
+    [SerializeField] private ScreenService _screenService;
 
     public static GameEntry Instance;
 
     void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Debug.LogWarning("GameEntry is already initialized");
+        InitializeMonoSingleton(this);
+        _config.Initialize();
+        _screenService.Initialize();
 
         _unityCallbackService.Initialize();
         new InputManager();
-        _player.Initialize();
     }
 }

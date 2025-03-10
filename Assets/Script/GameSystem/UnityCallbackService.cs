@@ -13,7 +13,7 @@ public class UnityCallbackService : MonoBehaviour
         if (Instance == null)
             Instance = this;
         else
-            Debug.LogWarning("UnityCallbackService is already initialized");
+            throw new Exception($"UnityCallbackService is already initialized");
     }
 
     private void FixedUpdate() => PhysicsUpdated?.Invoke();
