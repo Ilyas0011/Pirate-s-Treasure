@@ -1,20 +1,29 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class InputManager: Singleton<InputManager>
+public class InputManager: IInitializable
 {
+    private UnityCallbackService _unityCallbackService;
+
     private bool _isMovement;
 
     public Action<float, float> Move;
     public Action<float, float> Look;
     public Action Jump;
+    public bool IsReady { get; set; }
+    public bool DontAutoInit { get; }
 
-    public InputManager()
+    public Task Init()
     {
-        UnityCallbackService.Instance.FrameUpdated += InputUpdate;
+        _unityCallbackService = (UnityCallbackService)ServiceLocator.Get(typeof(UnityCallbackService));
 
-        InitializeSingleton(this);
+
+        _unityCallbackService.FrameUpdated += InputUpdate;
+
         SetMovementEnabled(true);
+
+        return Task.CompletedTask;
     }
 
     public void SetMovementEnabled(bool isEnabled) => _isMovement = isEnabled;

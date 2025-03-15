@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Config
   m_EditorClassIdentifier: 
   ScreenPrefabs:
-  - {fileID: 9086209681349069779, guid: 0aefecccac21e5b438b571ec7f80929f, type: 3}
-  - {fileID: 5833355166946543988, guid: 308b9614289ad6f4ebcf7913ca0ef4ff, type: 3}
-  - {fileID: 1072179583646112050, guid: 90fd8a73219c32f47bae532f6a958586, type: 3}
+  - {fileID: 6612728099104865100, guid: 0aefecccac21e5b438b571ec7f80929f, type: 3}
+  - {fileID: 3750523972641833139, guid: 90fd8a73219c32f47bae532f6a958586, type: 3}
+  - {fileID: -774333990936085957, guid: 308b9614289ad6f4ebcf7913ca0ef4ff, type: 3}
+  CanvasPrefab: {fileID: 1740057367401371605, guid: 92d1dc7daddc10f4d98873cb202c57a6, type: 3}

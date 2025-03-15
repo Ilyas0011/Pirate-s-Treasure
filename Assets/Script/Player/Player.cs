@@ -3,22 +3,25 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private CameraHolder _cameraHolder;
+
     private MovementController _movementController;
+    private InputManager _inputManager;
 
     public void Initialize()
     {
         _movementController = GetComponent<MovementController>();
+        _inputManager = (InputManager)ServiceLocator.Get(typeof(InputManager));
 
-        InputManager.Instance.Move += _movementController.OnMove;
-        InputManager.Instance.Jump += _movementController.Jump;
-        InputManager.Instance.Look += _cameraHolder.RotateCamera;
+        _inputManager.Move += _movementController.OnMove;
+        _inputManager.Jump += _movementController.Jump;
+        _inputManager.Look += _cameraHolder.RotateCamera;
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.Move -= _movementController.OnMove;
-        InputManager.Instance.Jump -= _movementController.Jump;
-        InputManager.Instance.Look -= _cameraHolder.RotateCamera;
+        _inputManager.Move -= _movementController.OnMove;
+        _inputManager.Jump -= _movementController.Jump;
+        _inputManager.Look -= _cameraHolder.RotateCamera;
     }
 }
 

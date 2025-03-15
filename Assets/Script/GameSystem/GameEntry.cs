@@ -1,21 +1,91 @@
-using Unity.VisualScripting.FullSerializer;
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Diagnostics;
+using Object = UnityEngine.Object;
 
-public class GameEntry : MonoSingleton<GameEntry>
+public class GameEntry : MonoBehaviour
 {
-    [SerializeField] private UnityCallbackService _unityCallbackService;
     [SerializeField] private Config _config;
-    [SerializeField] private ScreenService _screenService;
-
-    public static GameEntry Instance;
 
     void Awake()
     {
-        InitializeMonoSingleton(this);
+        ServiceLocator.Register(this);
+        ServiceLocator.Register(_config);
         _config.Initialize();
-        _screenService.Initialize();
 
-        _unityCallbackService.Initialize();
-        new InputManager();
+        RegisterServices();
+        InitServices();
+    }
+
+    private List<ServiceExecutionStage> _serviceRegistrationOrder = new()
+    {
+         new(typeof(UnityCallbackService)),
+         new(typeof(ScreenManager)),
+         new(typeof(InputManager)),
+    };
+
+    class ServiceExecutionStage
+    {
+        public readonly Type ServiceType;
+        public object ServiceInstance { get; private set; }
+        public ServiceExecutionStage(Type serviceType) => ServiceType = serviceType;
+
+        public object CreateInstance()
+        {
+            if (ServiceInstance != null)
+                throw new Exception($"Service of {ServiceType} type has already instanced.");
+
+            if (ServiceType.IsSubclassOf(typeof(MonoBehaviour)))
+            {
+                var container = new GameObject();
+                container.name = $"[{ServiceType.Name}]";
+                ServiceInstance = container.AddComponent(ServiceType);
+                Object.DontDestroyOnLoad(container);
+            }
+            else
+            {
+                ServiceInstance = Activator.CreateInstance(ServiceType);
+            }
+
+            return ServiceInstance;
+        }
+
+    }
+    void RegisterServices()
+    {
+        foreach (var order in _serviceRegistrationOrder)
+        {
+            try
+            {
+                var instance = order.CreateInstance();
+                ServiceLocator.Register(instance);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[Service Registration] Error: {e}");
+            }
+        }
+    }
+
+    async void InitServices()
+    {
+        foreach (var order in _serviceRegistrationOrder)
+        {
+            try
+            {
+                var service = ServiceLocator.Get(order.ServiceType);
+                if (service is not IInitializable initableService)
+                    continue;
+
+                await initableService.Init();
+                initableService.FinishInit();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[Service Initialization] Error: {e}");
+            }
+        }
     }
 }

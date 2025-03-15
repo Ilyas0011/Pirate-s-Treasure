@@ -8,11 +8,7 @@ public class CameraHolder : MonoBehaviour
     private float _rotationY;
     private float _rotationX;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
+    void Start() => Cursor.lockState = CursorLockMode.Locked;
     public void RotateCamera(float mouseX, float mouseY)
     {
         _rotationX = mouseX;
