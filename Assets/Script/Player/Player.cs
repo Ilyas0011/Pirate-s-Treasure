@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private MovementController _movementController;
     private InputManager _inputManager;
 
-    public void Initialize()
+    public void Start()
     {
         _movementController = GetComponent<MovementController>();
         _inputManager = (InputManager)ServiceLocator.Get(typeof(InputManager));

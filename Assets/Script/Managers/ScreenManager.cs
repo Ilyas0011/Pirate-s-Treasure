@@ -19,7 +19,7 @@ public class ScreenManager : MonoBehaviour, IInitializable
     {
         SpawnCanvas();
 
-        OpenScreen(typeof(MenuScreen));
+        OpenScreen(typeof(CoreGameScreen));
 
         return Task.CompletedTask;
     }

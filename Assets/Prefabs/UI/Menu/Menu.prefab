@@ -462,8 +462,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
+      propertyPath: _screenPrefab
+      value: 
+      objectReference: {fileID: 1423281852480948884, guid: 9ea900bb96d452242b174fd3ed205b07, type: 3}
     - target: {fileID: 6584657546377613490, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: m_Name
       value: Play
