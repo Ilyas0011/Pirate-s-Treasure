@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -18,16 +19,9 @@ public class ScreenManager : MonoBehaviour, IInitializable
     {
         SpawnCanvas();
 
-        OpenScreen(ScreenType.MainMenu);
+        OpenScreen(typeof(MenuScreen));
 
         return Task.CompletedTask;
-    }
-
-    public enum ScreenType
-    {
-        MainMenu,
-        Shop,
-        Settings
     }
 
     private void SpawnCanvas()
@@ -36,7 +30,7 @@ public class ScreenManager : MonoBehaviour, IInitializable
         _canvasTransform.SetParent(transform);
     }
 
-    public void OpenScreen(ScreenType screenType)
+    public void OpenScreen(Type screenType)
     {
         ScreenPrefab screen = _config.GetScreenPrefab(screenType);
 

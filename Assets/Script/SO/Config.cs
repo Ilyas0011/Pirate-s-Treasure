@@ -10,33 +10,24 @@ public class Config : ScriptableObject
     public ScreenPrefab[] ScreenPrefabs;
     public CanvasPrefab CanvasPrefab;
 
-    private Dictionary<ScreenType, ScreenPrefab> _screenDictionary;
+    private Dictionary<Type, ScreenPrefab> _screenDictionary;
 
-    public void Initialize() => ValidateAndFillDictionary(ScreenPrefabs);
-    private void ValidateAndFillDictionary(ScreenPrefab[] screenPrefabs)
+    public void Init()
     {
-        if (screenPrefabs == null || screenPrefabs.Length == 0)
-            throw new Exception($"Config: {screenPrefabs} the array is empty or not specified!");
+        if(ScreenPrefabs == null)
+            throw new Exception($"Encountered a null ScreenPrefab in the list");
 
-        _screenDictionary = new Dictionary<ScreenType, ScreenPrefab>();
+        _screenDictionary = new Dictionary<Type, ScreenPrefab>();
 
-        for (int i = 0; i < screenPrefabs.Length; i++)
-        {
-            if (screenPrefabs[i] == null)
-                throw new Exception($"Config: The {screenPrefabs} on the {i} index is not set!");
-
-            if (!Enum.IsDefined(typeof(ScreenType), i))
-                throw new Exception($"Config: There is no corresponding value in the ScreenType for the index {i}");
-
-            _screenDictionary.Add((ScreenType)i, ScreenPrefabs[i]);
-        }
+        foreach (var screenPrefab in ScreenPrefabs)
+            _screenDictionary[screenPrefab.GetType()] = screenPrefab;
     }
 
-    public ScreenPrefab GetScreenPrefab(ScreenType screenType)
+    public ScreenPrefab GetScreenPrefab(Type screenType)
     {
-        if (_screenDictionary == null || !_screenDictionary.TryGetValue(screenType, out ScreenPrefab screenPrefab))
-            throw new Exception($"Config: The prefab for {screenType} was not found!");
+        if (_screenDictionary.TryGetValue(screenType, out var screenPrefab))
+            return screenPrefab;
 
-        return screenPrefab;
+        throw new Exception($"Prefab {screenType} not found.");
     }
 }

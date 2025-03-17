@@ -13,7 +13,7 @@ public class GameEntry : MonoBehaviour
     {
         ServiceLocator.Register(this);
         ServiceLocator.Register(_config);
-        _config.Initialize();
+        _config.Init();
 
         RegisterServices();
         InitServices();
@@ -48,10 +48,8 @@ public class GameEntry : MonoBehaviour
             {
                 ServiceInstance = Activator.CreateInstance(ServiceType);
             }
-
             return ServiceInstance;
         }
-
     }
     void RegisterServices()
     {
