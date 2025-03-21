@@ -3,10 +3,11 @@ using System.Threading.Tasks;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Device;
+using static BaseScreen;
 
 public class ScreenManager : MonoBehaviour, IInitializable
 {
-    private BaseScreen _currentScreenObject;
+    public BaseScreen _currentScreenObject;
     private Transform _canvasTransform;
     private Config _config;
 
@@ -19,8 +20,7 @@ public class ScreenManager : MonoBehaviour, IInitializable
     {
         SpawnCanvas();
 
-        OpenScreen(typeof(CoreGameScreen));
-
+        OpenScreen(ScreenIdentifier.CoreGame);
         return Task.CompletedTask;
     }
 
@@ -30,9 +30,9 @@ public class ScreenManager : MonoBehaviour, IInitializable
         _canvasTransform.SetParent(transform);
     }
 
-    public void OpenScreen(Type screenType)
+    public void OpenScreen(ScreenIdentifier screenIdentifier)
     {
-        BaseScreen screen = _config.GetScreenPrefab(screenType);
+        BaseScreen screen = _config.GetScreenPrefab(screenIdentifier);
 
         if (_currentScreenObject != null)
             Destroy(_currentScreenObject.gameObject);

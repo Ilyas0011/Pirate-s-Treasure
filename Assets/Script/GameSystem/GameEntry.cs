@@ -73,7 +73,7 @@ public class GameEntry : MonoBehaviour
         {
             try
             {
-                if (order.ServiceType is not IInitializable initableService) continue;
+                if (order.ServiceInstance is not IInitializable initableService) continue;
 
                 await initableService.Init();
                 initableService.FinishInit();

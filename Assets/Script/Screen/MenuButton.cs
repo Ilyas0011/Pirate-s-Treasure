@@ -4,11 +4,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static BaseScreen;
 using static ScreenManager;
 
 public class MenuButton : MonoBehaviour
 {
-    [SerializeField] private BaseScreen _screenPrefab;
+    [SerializeField] private ScreenIdentifier _screenIdentifier;
 
     private ScreenManager _screenManager;
 
@@ -22,5 +23,5 @@ public class MenuButton : MonoBehaviour
         _button.onClick.AddListener(OnButtonClicked);
     }
 
-    private void OnButtonClicked() => _screenManager.OpenScreen(_screenPrefab.GetType());
+    private void OnButtonClicked() => _screenManager.OpenScreen(_screenIdentifier);
 }

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
-using static GameEntry;
-using static ScreenManager;
+using static BaseScreen;
 
 [CreateAssetMenu(fileName = "Config", menuName = "ScriptableObjects/Config")]
 public class Config : ScriptableObject
@@ -10,26 +11,39 @@ public class Config : ScriptableObject
     public BaseScreen[] ScreenPrefabs;
     public CanvasPrefab CanvasPrefab;
 
-    private Dictionary<Type, BaseScreen> _screenDictionary;
+    private Dictionary<ScreenIdentifier, BaseScreen> _screenById;
 
-    public void Init() =>  ValidateAndFillDictionary();
+    public void Init() => FillScreenDictionary();
 
-    private void ValidateAndFillDictionary()
+    private void FillScreenDictionary()
     {
-        if (ScreenPrefabs == null)
-            throw new Exception($"Encountered a null ScreenPrefab in the list");
+        foreach (var screenType in GetAllDerivedTypes())
+        {
+            bool exists = ScreenPrefabs.Any(prefab => prefab.GetType() == screenType);
 
-        _screenDictionary = new Dictionary<Type, BaseScreen>();
+            if (!exists)
+                throw new Exception($"The screen {screenType.Name} is not in ScreenPrefabs.");
+        }
+
+        var duplicateGroup = ScreenPrefabs.GroupBy(screen => screen.ID)
+            .FirstOrDefault(group => group.Count() > 1);
+
+        if (duplicateGroup != null)
+            throw new Exception($"Duplicate Screen ID found: {duplicateGroup.Key}");
+
+        _screenById = new Dictionary<ScreenIdentifier, BaseScreen>();
 
         foreach (var screenPrefab in ScreenPrefabs)
-            _screenDictionary[screenPrefab.GetType()] = screenPrefab;
-    }
+            _screenById[screenPrefab.ID] = screenPrefab;
+     }
 
-    public BaseScreen GetScreenPrefab(Type screenType)
+    public static List<Type> GetAllDerivedTypes()
     {
-        if (_screenDictionary.TryGetValue(screenType, out var screenPrefab))
-            return screenPrefab;
-
-        throw new Exception($"Prefab {screenType} not found.");
+        var derivedTypes = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(t => t.IsSubclassOf(typeof(Screen)) && !t.IsAbstract)
+            .ToList();
+        return derivedTypes;
     }
+
+    public BaseScreen GetScreenPrefab(ScreenIdentifier screenIdentifier) => _screenById[screenIdentifier];
 }

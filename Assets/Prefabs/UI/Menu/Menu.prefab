@@ -234,12 +234,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: _screenPrefab
-      value: 
-      objectReference: {fileID: -4056604441343515209, guid: 308b9614289ad6f4ebcf7913ca0ef4ff, type: 3}
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: _screenScript
       value: 
       objectReference: {fileID: 11500000, guid: 360622c2216f68040992aa09c3c5a1f6, type: 3}
+    - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
+      propertyPath: _screenIdentifier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6584657546377613490, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: m_Name
       value: Shop
@@ -352,12 +356,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: _screenPrefab
-      value: 
-      objectReference: {fileID: 7282678333227516116, guid: 90fd8a73219c32f47bae532f6a958586, type: 3}
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: _screenScript
       value: 
       objectReference: {fileID: 11500000, guid: 768c819ed57034e4c996c240fcd03669, type: 3}
+    - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
+      propertyPath: _screenIdentifier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6584657546377613490, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: m_Name
       value: Settings
@@ -466,8 +474,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: _screenPrefab
-      value: 
-      objectReference: {fileID: 1423281852480948884, guid: 9ea900bb96d452242b174fd3ed205b07, type: 3}
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671262657225877419, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
+      propertyPath: _screenIdentifier
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6584657546377613490, guid: 9ad24e4dc3da53340ad9bf24e0908e14, type: 3}
       propertyPath: m_Name
       value: Play
