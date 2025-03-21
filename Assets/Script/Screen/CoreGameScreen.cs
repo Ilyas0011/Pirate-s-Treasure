@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CoreGameScreen : ScreenPrefab
+public class CoreGameScreen : BaseScreen
 {
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
         SceneManager.LoadScene("Game");
     }
 }

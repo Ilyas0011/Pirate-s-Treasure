@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuScreen : ScreenPrefab
+public class MenuScreen : BaseScreen
 {
 }

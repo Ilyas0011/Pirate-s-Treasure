@@ -1,5 +1,5 @@
 using UnityEngine;
 
-public class SettingsScreen : ScreenPrefab
+public class SettingsScreen : BaseScreen
 {
 }

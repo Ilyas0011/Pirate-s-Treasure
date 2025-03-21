@@ -1,5 +1,5 @@
 using UnityEngine;
 
-public class ScreenPrefab : MonoBehaviour
+public class BaseScreen : MonoBehaviour
 {
 }

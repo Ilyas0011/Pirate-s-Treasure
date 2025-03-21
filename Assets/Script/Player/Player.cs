@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public void Start()
     {
         _movementController = GetComponent<MovementController>();
-        _inputManager = (InputManager)ServiceLocator.Get(typeof(InputManager));
+        _inputManager = ServiceLocator.Get<InputManager>();
 
         _inputManager.Move += _movementController.OnMove;
         _inputManager.Jump += _movementController.Jump;

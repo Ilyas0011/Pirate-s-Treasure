@@ -7,7 +7,6 @@ using UnityEngine.Diagnostics;
 public interface IInitializable
 {
     public bool IsReady { get; set; }
-    public bool DontAutoInit { get; }
     Task Init();
 
     void FinishInit()

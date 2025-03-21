@@ -1,5 +1,5 @@
 using UnityEngine;
 
-public class ShopScreen : ScreenPrefab
+public class ShopScreen : BaseScreen
 {
 }

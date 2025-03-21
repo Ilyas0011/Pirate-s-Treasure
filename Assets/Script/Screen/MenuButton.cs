@@ -8,7 +8,7 @@ using static ScreenManager;
 
 public class MenuButton : MonoBehaviour
 {
-    [SerializeField] private ScreenPrefab _screenPrefab;
+    [SerializeField] private BaseScreen _screenPrefab;
 
     private ScreenManager _screenManager;
 
@@ -16,7 +16,7 @@ public class MenuButton : MonoBehaviour
 
     private void Awake ()
     {
-        _screenManager = (ScreenManager)ServiceLocator.Get(typeof(ScreenManager));
+        _screenManager = ServiceLocator.Get<ScreenManager>();
 
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnButtonClicked);

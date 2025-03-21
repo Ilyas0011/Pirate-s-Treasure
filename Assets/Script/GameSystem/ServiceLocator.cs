@@ -22,4 +22,13 @@ public static class ServiceLocator
 
         throw new Exception($"Service {serviceType} not found.");
     }
+
+    public static T Get<T>()
+    {
+        Type serviceType = typeof(T);
+        if (_services.TryGetValue(serviceType, out var instance))
+            return (T)instance;
+
+        throw new Exception($"Service {serviceType} not found.");
+    }
 }

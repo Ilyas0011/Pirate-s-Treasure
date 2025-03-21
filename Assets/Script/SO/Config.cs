@@ -7,23 +7,25 @@ using static ScreenManager;
 [CreateAssetMenu(fileName = "Config", menuName = "ScriptableObjects/Config")]
 public class Config : ScriptableObject
 {
-    public ScreenPrefab[] ScreenPrefabs;
+    public BaseScreen[] ScreenPrefabs;
     public CanvasPrefab CanvasPrefab;
 
-    private Dictionary<Type, ScreenPrefab> _screenDictionary;
+    private Dictionary<Type, BaseScreen> _screenDictionary;
 
-    public void Init()
+    public void Init() =>  ValidateAndFillDictionary();
+
+    private void ValidateAndFillDictionary()
     {
-        if(ScreenPrefabs == null)
+        if (ScreenPrefabs == null)
             throw new Exception($"Encountered a null ScreenPrefab in the list");
 
-        _screenDictionary = new Dictionary<Type, ScreenPrefab>();
+        _screenDictionary = new Dictionary<Type, BaseScreen>();
 
         foreach (var screenPrefab in ScreenPrefabs)
             _screenDictionary[screenPrefab.GetType()] = screenPrefab;
     }
 
-    public ScreenPrefab GetScreenPrefab(Type screenType)
+    public BaseScreen GetScreenPrefab(Type screenType)
     {
         if (_screenDictionary.TryGetValue(screenType, out var screenPrefab))
             return screenPrefab;

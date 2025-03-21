@@ -6,14 +6,14 @@ using UnityEngine.Device;
 
 public class ScreenManager : MonoBehaviour, IInitializable
 {
-    private ScreenPrefab _currentScreenObject;
+    private BaseScreen _currentScreenObject;
     private Transform _canvasTransform;
     private Config _config;
 
     public bool IsReady { get; set; }
     public bool DontAutoInit { get; }
 
-    public ScreenManager() => _config = (Config)ServiceLocator.Get(typeof(Config));
+    public ScreenManager() => _config = ServiceLocator.Get<Config>();
 
     public Task Init()
     {
@@ -32,7 +32,7 @@ public class ScreenManager : MonoBehaviour, IInitializable
 
     public void OpenScreen(Type screenType)
     {
-        ScreenPrefab screen = _config.GetScreenPrefab(screenType);
+        BaseScreen screen = _config.GetScreenPrefab(screenType);
 
         if (_currentScreenObject != null)
             Destroy(_currentScreenObject.gameObject);

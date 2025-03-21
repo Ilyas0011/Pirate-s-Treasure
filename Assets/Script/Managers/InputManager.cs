@@ -16,8 +16,7 @@ public class InputManager: IInitializable
 
     public Task Init()
     {
-        _unityCallbackService = (UnityCallbackService)ServiceLocator.Get(typeof(UnityCallbackService));
-
+        _unityCallbackService = ServiceLocator.Get<UnityCallbackService>();
 
         _unityCallbackService.FrameUpdated += InputUpdate;
 
