@@ -11,6 +11,8 @@ public class InputManager: IInitializable
     public Action<float, float> Move;
     public Action<float, float> Look;
     public Action Jump;
+    public Action Slash;
+
     public bool IsReady { get; set; }
     public bool DontAutoInit { get; }
 
@@ -36,6 +38,9 @@ public class InputManager: IInitializable
 
             if (Input.GetKeyDown(KeyCode.Space))
                 Jump?.Invoke();
+
+            if (Input.GetMouseButtonDown(0))
+                Slash?.Invoke(); ;
         }
     }
 }
