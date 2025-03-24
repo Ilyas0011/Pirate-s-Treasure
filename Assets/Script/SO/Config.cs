@@ -13,36 +13,65 @@ public class Config : ScriptableObject
 
     private Dictionary<ScreenIdentifier, BaseScreen> _screenById;
 
-    public void Init() => FillScreenDictionary();
+    public void Init()
+    {
+        #if UNITY_EDITOR
+        ValidationScreenById();
+        #endif
 
-    private void FillScreenDictionary()
+        FillScreenDictionary();
+
+    }
+
+    private void ValidationScreenById()
     {
         foreach (var screenType in GetAllDerivedTypes())
         {
-            bool exists = ScreenPrefabs.Any(prefab => prefab.GetType() == screenType);
+            bool found = false;
+            foreach (var prefab in ScreenPrefabs)
+            {
 
-            if (!exists)
-                throw new Exception($"The screen {screenType.Name} is not in ScreenPrefabs.");
+                if (prefab.GetType() == screenType)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found)
+            throw new Exception($"The screen {screenType.Name} is not in ScreenPrefabs.");
         }
 
-        var duplicateGroup = ScreenPrefabs.GroupBy(screen => screen.ID)
-            .FirstOrDefault(group => group.Count() > 1);
+        var screenID = new HashSet<ScreenIdentifier>();
 
-        if (duplicateGroup != null)
-            throw new Exception($"Duplicate Screen ID found: {duplicateGroup.Key}");
+        foreach (var screenPrefab in ScreenPrefabs)
+        {
+            if (!screenID.Add(screenPrefab.ID))
+                throw new Exception($"Duplicate Screen ID found: {screenPrefab.ID}");
+        }
+    }
 
+    public List<Type> GetAllDerivedTypes()
+    {
+        List<Type> allScreenTypes = new();
+
+        Type[] allTypes = Assembly.GetExecutingAssembly().GetTypes();
+
+        foreach(var type in allTypes)
+        {
+            if(type.IsSubclassOf(typeof(BaseScreen)) && !type.IsAbstract)
+                allScreenTypes.Add(type);  
+        }
+
+        return allScreenTypes;
+    }
+
+    private void FillScreenDictionary()
+    {
         _screenById = new Dictionary<ScreenIdentifier, BaseScreen>();
 
         foreach (var screenPrefab in ScreenPrefabs)
             _screenById[screenPrefab.ID] = screenPrefab;
-     }
-
-    public static List<Type> GetAllDerivedTypes()
-    {
-        var derivedTypes = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => t.IsSubclassOf(typeof(Screen)) && !t.IsAbstract)
-            .ToList();
-        return derivedTypes;
     }
 
     public BaseScreen GetScreenPrefab(ScreenIdentifier screenIdentifier) => _screenById[screenIdentifier];
