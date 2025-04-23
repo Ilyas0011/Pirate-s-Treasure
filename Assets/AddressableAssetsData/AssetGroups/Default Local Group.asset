@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_GUID: dfaa28b29c4cca643ad171766fca6122
+  m_SerializeEntries:
+  - m_GUID: 1c5a32749153b4e45af3ae1a1a21fe87
+    m_Address: Assets/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ef022aa1cdeec34489165b6a6ad4de0
+    m_Address: Assets/Model
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b797abb682eb6d439030f6f86f3d608
+    m_Address: Assets/Script
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 576a0821a2a164f4aa986e077cdb9a5a
+    m_Address: Assets/WebGLTemplates
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65488fe867a40bc48be95ee73c1cd456
+    m_Address: Assets/Scenes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c8ab95be3779334d99a802b92084f60
+    m_Address: Assets/Asset/JC_StylizedNature_Lite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ba0126ed2b234945b87a6df014e7553
+    m_Address: Assets/Material/Shared
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 844eb929fbfc9f1458b388e5889becba
+    m_Address: Assets/Prefabs
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9816db91c4a20104bb3ec278e081dce0
+    m_Address: Assets/Asset/IVT_LowPoly_Weapon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c65a2b4dae927f84ab662fde7e7483e7
+    m_Address: Assets/Asset/Islands2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7f734c045cf0a8439269d0415a19637
+    m_Address: Assets/PluginYourGames
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d092b899c9ba64142bd3e5e5994b77f1
+    m_Address: Assets/Asset/Tavern
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dda9d8bf5327f4b4eae0cd1a10d60c6c
+    m_Address: Assets/Asset/Game Buffs
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f276158b27c06d84385107a63295fb44
+    m_Address: Assets/Asset/Islands
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f54d1bd14bd3ca042bd867b519fee8cc
+    m_Address: Assets/TextMesh Pro
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CubePrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 7c9bc1198d8b53943a594f231ca7c0ff, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 135c486734e451e45a3f6210cb4ce0a2, type: 2}
+    - {fileID: 11400000, guid: 4c5cdf1c0eab1ed4b80414123b2753e6, type: 2}

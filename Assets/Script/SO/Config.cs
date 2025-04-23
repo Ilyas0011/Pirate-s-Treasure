@@ -20,7 +20,6 @@ public class Config : ScriptableObject
         #endif
 
         FillScreenDictionary();
-
     }
 
     private void ValidationScreenById()
